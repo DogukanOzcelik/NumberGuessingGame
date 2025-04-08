@@ -1,0 +1,28 @@
+﻿@model MyApp.Models.Item
+@{
+}
+<html>
+<body>
+	<form asp-action="Overview" method="post">
+		<input type="hidden" name="CorrectNumber" value="@Model.CorrectNumber" />
+		<div style="width: 100%; text-align: center">
+			@if(Model.Numbers != null)
+			{
+				@foreach (var number in Model.Numbers)
+				{
+					<div style="display: inline-block; margin: 10px;">
+						<button style="width: 150px; height: 50px; font-size: 16px;" type="submit" name="selectedNumber" value="@number">@number</button>
+					</div>
+				}
+			}
+		</div>
+	</form>
+
+	@if (!string.IsNullOrEmpty(Model.Message))
+	{
+		<div style="margin-top: 20px; text-align: center; font-size: 18px; color: blue;">
+			@Model.Message
+		</div>
+	}
+</body>
+</html>
