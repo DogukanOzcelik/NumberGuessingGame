@@ -1,0 +1,32 @@
+﻿@model MyApp.Models.Game
+@{
+}
+<html>
+	<head>
+		<title>NumberGuessingGame</title>
+		<link rel="stylesheet" href="/css/styles.css" />
+	</head>
+	<body>
+		<h1 class="game-title">Number Guessing Game</h1>
+		<form asp-action="Game" method="post">
+			<input type="hidden" name="CorrectNumber" value="@Model.CorrectNumber" />
+			<div class="center-container">
+				@if (Model.Numbers != null)
+				{
+					@foreach (var number in Model.Numbers)
+					{
+						<div style="display: inline-block; margin: 10px;">
+							<button style="width: 300px; height: 100px; font-size: 32px;" type="submit" name="selectedNumber" value="@number">@number</button>
+						</div>
+					}
+				}
+				@if (!string.IsNullOrEmpty(Model.Message))
+				{
+					<div class="game-title" style="color: orange;">
+						@Model.Message
+					</div>
+				}
+			</div>
+		</form>
+	</body>
+</html>

@@ -1,6 +1,6 @@
 ﻿namespace MyApp.Models
 {
-    public class Item
+    public class Game
     {
         public required List<int> Numbers { get; set; }
         public int? SelectedNumber { get; set; }

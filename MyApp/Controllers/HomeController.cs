@@ -6,27 +6,42 @@ namespace MyApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Game");
+        }
+        public IActionResult Game()
+        {
+            Random random = new Random();
+            HashSet<int> set = new HashSet<int>();
+            while (set.Count < 3)
+            {
+                set.Add(random.Next(1, 10));
+            }
+
+            List<int> temp = set.ToList();
+
+            int correctIndex = random.Next(0, temp.Count);
+
+            var game = new Game() { Numbers = temp, CorrectNumber = temp[correctIndex] };
+            return View(game);
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Game(Game model)
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (model.SelectedNumber.HasValue)
+            {
+                if (model.SelectedNumber == model.CorrectNumber)
+                {
+                    model.Message = $"Correct!";
+                }
+                else
+                {
+                    model.Message = $"Wrong! Number was {model.CorrectNumber}";
+                }
+            }
+            return View(model);
         }
     }
 }
