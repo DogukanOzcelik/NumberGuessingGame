@@ -6,15 +6,24 @@ namespace MyApp.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return RedirectToAction("Game");
+            return View();
         }
-        public IActionResult Game()
+
+        [HttpPost]
+        public IActionResult Index(MyApp.Models.Index model)
+        {
+            return RedirectToAction("Game", model);
+        }
+
+        [HttpGet]
+        public IActionResult Game(MyApp.Models.Index model)
         {
             Random random = new Random();
             HashSet<int> set = new HashSet<int>();
-            while (set.Count < 3)
+            while (set.Count < (int)model.Difficulty * 3)
             {
                 set.Add(random.Next(1, 10));
             }

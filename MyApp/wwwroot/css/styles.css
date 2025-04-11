@@ -1,18 +1,25 @@
-﻿html, body {
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
     height: 100%;
     margin: 0;
     background-color: antiquewhite;
 }
 
 .center-container {
-    display: flex;
-    justify-content: center; /* Yatay ortalama */
-    align-items: center; /* Dikey ortalama */
-    height: 100vh; /* Tüm ekran yüksekliği */
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    grid-template-rows: repeat(3, 150px);
+    justify-content: center;
+    justify-items: center;
+    height: 100%; 
     width: 100%;
-    text-align: center;
-    flex-direction: row; /* İçerikleri dikey olarak hizala */
-    margin-top: -40px;
+    margin-top: 200px;
+    gap: 20px;
 }
 
 .game-title, .result-message {
@@ -26,11 +33,13 @@
     color: white;
     background-color: darkseagreen;
     border-radius: 10px;
-    width: 300px;
-    height: 100px;
+    width: 250px;
+    height: 125px;
     font-size: 32px;
     border-width: medium;
     cursor: pointer;
+    margin: 0;
+    padding: 5px 10px;
 }
 
 .number-button:hover {

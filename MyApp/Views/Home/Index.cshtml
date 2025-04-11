@@ -1,0 +1,25 @@
+﻿@model MyApp.Models.Index
+@{
+}
+<html>
+	<head>
+		<title>NumberGuessingGame</title>
+		<link rel="stylesheet" href="/css/styles.css" />
+	</head>
+	<body>
+		<h1 class="game-title">Number Guessing Game</h1>
+		<form asp-action="Index" method="post">
+			<div class="center-container" style="display: flex; margin-top: 200px;">
+				<div style="display: inline-block; margin: 10px;">
+					<button style="background-color: green" class="number-button" type="submit" name="Difficulty" value="1">Easy</button>
+				</div>
+				<div style="display: inline-block; margin: 10px;">
+					<button style="background-color: orange" class="number-button" type="submit" name="Difficulty" value="2">Normal</button>
+				</div>
+				<div style="display: inline-block; margin: 10px;">
+					<button style="background-color: red" class="number-button" type="submit" name="Difficulty" value="3">Hard</button>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>

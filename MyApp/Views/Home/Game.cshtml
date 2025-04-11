@@ -8,6 +8,12 @@
 	</head>
 	<body>
 		<h1 class="game-title">Number Guessing Game</h1>
+		@if (!string.IsNullOrEmpty(Model.Message))
+		{
+			<div class="result-message" style="color: orange; margin-top: 100px;">
+				@Model.Message
+			</div>
+		}
 		<form asp-action="Game" method="post">
 			<input type="hidden" name="CorrectNumber" value="@Model.CorrectNumber" />
 			<div class="center-container">
@@ -15,16 +21,10 @@
 				{
 					@foreach (var number in Model.Numbers)
 					{
-						<div style="display: inline-block; margin: 10px;">
+						<div>
 							<button class="number-button" type="submit" name="selectedNumber" value="@number">@number</button>
 						</div>
 					}
-				}
-				@if (!string.IsNullOrEmpty(Model.Message))
-				{
-					<div class="result-message" style="color: orange;">
-						@Model.Message
-					</div>
 				}
 			</div>
 		</form>
